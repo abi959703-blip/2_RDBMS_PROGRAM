@@ -30,7 +30,7 @@ jobs:
     steps:
 
       # ----------------------------------------
-      # Checkout Student Repository
+      # Checkout repository
       # ----------------------------------------
 
       - name: Checkout Repository
@@ -48,7 +48,7 @@ jobs:
 
 
       # ----------------------------------------
-      # Install MySQL Connector
+      # Install MySQL Python Connector
       # ----------------------------------------
 
       - name: Install Dependencies
