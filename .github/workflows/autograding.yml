@@ -1,26 +1,20 @@
-name: Student Table Autograding
+name: SQL Auto Grading
 
 on:
   push:
   pull_request:
 
 jobs:
-
   grade:
-
     runs-on: ubuntu-latest
 
     services:
-
       mysql:
         image: mysql:8.0
-
         env:
           MYSQL_ROOT_PASSWORD: root
-
         ports:
           - 3306:3306
-
         options: >-
           --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot"
           --health-interval=10s
@@ -29,40 +23,13 @@ jobs:
 
     steps:
 
-      # ----------------------------------------
-      # Checkout repository
-      # ----------------------------------------
-
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-
-      # ----------------------------------------
-      # Setup Python
-      # ----------------------------------------
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-
-      # ----------------------------------------
-      # Install MySQL Python Connector
-      # ----------------------------------------
-
-      - name: Install Dependencies
-        run: |
-          pip install mysql-connector-python
-
-
-      # ----------------------------------------
-      # Wait for MySQL
-      # ----------------------------------------
-
       - name: Wait for MySQL
         run: |
-          for i in {1..30}; do
+          for i in {1..30}
+          do
             mysqladmin ping \
               -h 127.0.0.1 \
               -P 3306 \
@@ -71,11 +38,29 @@ jobs:
             sleep 2
           done
 
-
-      # ----------------------------------------
-      # Run Autograding Test
-      # ----------------------------------------
-
-      - name: Run Student Table Tests
+      - name: Check MySQL
         run: |
-          python test_department.py
+          mysql \
+            -h 127.0.0.1 \
+            -P 3306 \
+            -u root \
+            -proot \
+            -e "SELECT VERSION();"
+
+      - name: Run Student Solution
+        run: |
+          mysql \
+            -h 127.0.0.1 \
+            -P 3306 \
+            -u root \
+            -proot \
+            < solution.sql
+
+      - name: Run SQL Tests
+        run: |
+          mysql \
+            -h 127.0.0.1 \
+            -P 3306 \
+            -u root \
+            -proot \
+            < test.sql
