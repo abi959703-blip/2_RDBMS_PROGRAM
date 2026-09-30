@@ -1,3 +1,11 @@
+
+---
+
+# 2. `solution.sql`
+
+This is the **correct solution**.
+
+```sql
 CREATE DATABASE CollegeDB;
 
 USE CollegeDB;
