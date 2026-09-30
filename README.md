@@ -2,7 +2,8 @@
 
 ## Problem Statement
 
-Create a database named `CollegeDB` and create a table named `Student` with the following fields:
+Create a database named `CollegeDB` and create a table named `Student`
+with the following fields:
 
 | Field | Data Type | Constraint |
 |---|---|---|
@@ -14,23 +15,50 @@ Create a database named `CollegeDB` and create a table named `Student` with the 
 
 ## Requirements
 
-1. Create a database named `CollegeDB`.
-2. Select/use the `CollegeDB` database.
-3. Create a table named `Student`.
-4. The table must contain exactly five fields:
-   - `StudentID` – INT – PRIMARY KEY
-   - `StudentName` – VARCHAR(20) – UNIQUE, NOT NULL
-   - `DOB` – DATE – NOT NULL
-   - `Gender` – VARCHAR(10) – NOT NULL
-   - `DepartmentID` – INT – NOT NULL
-5. `StudentID` must be the Primary Key.
-6. `StudentName` must be UNIQUE.
-7. `StudentName`, `DOB`, `Gender`, and `DepartmentID` must be NOT NULL.
-8. Do not add extra columns.
+Create a database named:
+
+CollegeDB
+
+Create a table named:
+
+Student
+
+The Student table must contain exactly five columns:
+
+1. StudentID – INT – PRIMARY KEY
+2. StudentName – VARCHAR(20) – UNIQUE, NOT NULL
+3. DOB – DATE – NOT NULL
+4. Gender – VARCHAR(10) – NOT NULL
+5. DepartmentID – INT – NOT NULL
+
+## Constraints
+
+The following constraints must be applied:
+
+- StudentID must be the PRIMARY KEY.
+- StudentName must be UNIQUE.
+- StudentName must be NOT NULL.
+- DOB must be NOT NULL.
+- Gender must be NOT NULL.
+- DepartmentID must be NOT NULL.
 
 ## Submission
 
-Create a file named:
+Write your SQL program in:
 
-```text
 solution.sql
+
+## Expected SQL Structure
+
+```sql
+CREATE DATABASE CollegeDB;
+
+USE CollegeDB;
+
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    StudentName VARCHAR(20) UNIQUE NOT NULL,
+    DOB DATE NOT NULL,
+    Gender VARCHAR(10) NOT NULL,
+    DepartmentID INT NOT NULL
+);
